@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Repository auschecken
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: App mit Secrets bauen
         env:
@@ -45,7 +45,7 @@ jobs:
           rm -f data.json
 
       - name: Auf gh-pages Branch deployen
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
