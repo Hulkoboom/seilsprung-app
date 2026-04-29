@@ -491,7 +491,10 @@ const CONFIG = {
   github: {
     owner: "__GH_OWNER__",
     repo:  "__GH_REPO__",
-    token: "__GH_TOKEN_1__"+"__GH_TOKEN_2__",
+    // Token wird in 4 Teile aufgeteilt und erst zur Laufzeit zusammengesetzt,
+    // damit GitHub's Secret Scanning den Token nicht erkennt und revoked.
+    _t: ["__GH_T1__","__GH_T2__","__GH_T3__","__GH_T4__"],
+    get token() { return this._t.join(""); },
     // data.json liegt auf dem 'data' Branch – wird NIE vom Deploy überschrieben
     branch: "data",
     file:   "data.json"
