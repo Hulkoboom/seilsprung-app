@@ -25,6 +25,11 @@ jobs:
           GH_OWNER: ${{ github.repository_owner }}
           GH_REPO:  ${{ github.event.repository.name }}
         run: |
+          [ -z "${PIN_A}" ]    && echo "PIN_A: LEER!"    || echo "PIN_A: gesetzt"
+          [ -z "${GH_TOKEN}" ] && echo "GH_TOKEN: LEER!" || echo "GH_TOKEN: gesetzt (${GH_TOKEN:0:4}...)"
+          echo "GH_OWNER: ${GH_OWNER} / GH_REPO: ${GH_REPO}"
+          echo "=== Platzhalter VOR sed ==="
+          grep -o "__[A-Z_]*__" index.html | sort | uniq || echo "Keine Platzhalter gefunden!"
           sed -i "s|__PIN_A__|${PIN_A}|g"       index.html
           sed -i "s|__PIN_B__|${PIN_B}|g"       index.html
           sed -i "s|__NAME_A__|${NAME_A}|g"     index.html
@@ -32,7 +37,9 @@ jobs:
           sed -i "s|__GH_TOKEN__|${GH_TOKEN}|g" index.html
           sed -i "s|__GH_OWNER__|${GH_OWNER}|g" index.html
           sed -i "s|__GH_REPO__|${GH_REPO}|g"   index.html
-          # data.json entfernen damit sie NICHT auf gh-pages landet
+          echo "=== Platzhalter NACH sed ==="
+          grep -o "__[A-Z_]*__" index.html | sort | uniq && echo "FEHLER: noch vorhanden!" || echo "OK: alle ersetzt!"
+          grep "token:" index.html
           rm -f data.json
 
       - name: Auf gh-pages Branch deployen
