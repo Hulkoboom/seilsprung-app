@@ -14,12 +14,11 @@
     --border: #2e2e2e;
     --text: #f0f0f0;
     --text-muted: #666;
-    --text-dim: #3a3a3a;
+    --text-dim: #2e2e2e;
     --accent-a: #e8f4a0;
     --accent-b: #f4a0c8;
-    --accent-a-dim: #e8f4a022;
-    --accent-b-dim: #f4a0c822;
-    --green: #6fcf97;
+    --accent-a-dim: rgba(232,244,160,0.08);
+    --accent-b-dim: rgba(244,160,200,0.08);
     --mono: 'DM Mono', monospace;
     --sans: 'DM Sans', sans-serif;
   }
@@ -37,400 +36,237 @@
     padding: 1.5rem;
   }
 
-  /* ── PIN SCREEN ─────────────────────────────────────── */
-  #pin-screen {
-    width: 100%;
-    max-width: 360px;
-    text-align: center;
-  }
+  /* PIN SCREEN */
+  #pin-screen { width: 100%; max-width: 340px; text-align: center; }
 
   .logo-mark {
-    width: 56px; height: 56px;
+    width: 52px; height: 52px;
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 2rem;
-    font-size: 24px;
+    font-size: 22px;
   }
 
   #pin-screen h1 {
     font-family: var(--mono);
-    font-size: 1.1rem;
+    font-size: 0.85rem;
     font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     color: var(--text-muted);
     margin-bottom: 2.5rem;
     text-transform: uppercase;
   }
 
   .pin-dots {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    margin-bottom: 2rem;
-    height: 12px;
+    display: flex; justify-content: center;
+    gap: 14px; margin-bottom: 2rem; height: 14px;
   }
 
   .pin-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: transparent;
-    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 1px solid var(--border); background: transparent;
+    transition: all 0.12s;
   }
 
-  .pin-dot.filled {
-    background: var(--text);
-    border-color: var(--text);
-    transform: scale(1.1);
-  }
-
+  .pin-dot.filled        { background: var(--text); border-color: var(--text); transform: scale(1.15); }
   .pin-dot.filled.user-a { background: var(--accent-a); border-color: var(--accent-a); }
   .pin-dot.filled.user-b { background: var(--accent-b); border-color: var(--accent-b); }
 
   .numpad {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    max-width: 260px;
-    margin: 0 auto 1.5rem;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; max-width: 252px; margin: 0 auto 1.5rem;
   }
 
   .num-btn {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 1.2rem;
-    padding: 18px 0;
-    cursor: pointer;
-    transition: background 0.12s, transform 0.08s;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; color: var(--text);
+    font-family: var(--mono); font-size: 1.15rem;
+    padding: 17px 0; cursor: pointer;
+    transition: background 0.1s, transform 0.08s;
+    user-select: none; -webkit-tap-highlight-color: transparent;
   }
 
-  .num-btn:hover { background: var(--surface2); }
-  .num-btn:active { transform: scale(0.93); background: var(--surface2); }
-
-  .num-btn.del {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-  }
+  .num-btn:hover  { background: var(--surface2); }
+  .num-btn:active { transform: scale(0.92); }
+  .num-btn.del    { font-size: 0.85rem; color: var(--text-muted); }
 
   .pin-error {
-    font-size: 0.8rem;
-    color: #e07070;
-    font-family: var(--mono);
-    letter-spacing: 0.05em;
-    min-height: 1.2em;
-    transition: opacity 0.2s;
+    font-family: var(--mono); font-size: 0.75rem;
+    color: #e07070; letter-spacing: 0.05em; min-height: 1.1em;
   }
 
-  /* ── MAIN APP ────────────────────────────────────────── */
-  #app {
-    width: 100%;
-    max-width: 400px;
-    display: none;
-  }
+  /* MAIN APP */
+  #app { width: 100%; max-width: 400px; display: none; }
 
   .app-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 1.75rem;
   }
 
   .month-label {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    text-transform: uppercase;
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase;
   }
 
   .user-badge {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    padding: 4px 10px;
-    border-radius: 20px;
-    border: 1px solid;
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.08em; padding: 3px 10px;
+    border-radius: 20px; border: 1px solid;
   }
 
-  .user-badge.user-a {
-    color: var(--accent-a);
-    border-color: var(--accent-a);
-    background: var(--accent-a-dim);
-  }
-
-  .user-badge.user-b {
-    color: var(--accent-b);
-    border-color: var(--accent-b);
-    background: var(--accent-b-dim);
-  }
+  .user-badge.user-a { color: var(--accent-a); border-color: var(--accent-a); background: var(--accent-a-dim); }
+  .user-badge.user-b { color: var(--accent-b); border-color: var(--accent-b); background: var(--accent-b-dim); }
 
   /* Score cards */
-  .scores {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 1.5rem;
-  }
+  .scores { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
 
   .score-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.25rem 1rem;
-    text-align: center;
-    position: relative;
-    transition: border-color 0.2s;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.25rem 1rem; text-align: center; position: relative;
   }
 
-  .score-card.leading-a { border-color: var(--accent-a); }
-  .score-card.leading-b { border-color: var(--accent-b); }
-
-  .score-card.is-me {
-    border-style: solid;
-  }
-
-  .score-card.is-me.user-a { background: var(--accent-a-dim); }
-  .score-card.is-me.user-b { background: var(--accent-b-dim); }
+  .score-card.is-me.user-a { background: var(--accent-a-dim); border-color: var(--accent-a); }
+  .score-card.is-me.user-b { background: var(--accent-b-dim); border-color: var(--accent-b); }
+  .score-card.leading       { border-width: 2px; }
 
   .card-name {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
+    font-family: var(--mono); font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.4rem;
   }
 
   .card-score {
-    font-family: var(--mono);
-    font-size: 2.8rem;
-    font-weight: 500;
-    line-height: 1;
-    margin-bottom: 0.3rem;
+    font-family: var(--mono); font-size: 2.8rem;
+    font-weight: 500; line-height: 1; margin-bottom: 0.2rem;
   }
 
   .card-score.user-a { color: var(--accent-a); }
   .card-score.user-b { color: var(--accent-b); }
 
+  .card-unit {
+    font-family: var(--mono); font-size: 0.65rem;
+    color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
   .lead-badge {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 20px;
-    white-space: nowrap;
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 20px; white-space: nowrap;
   }
 
-  .lead-badge.user-a {
-    background: var(--accent-a);
-    color: #0f0f0f;
-  }
+  .lead-badge.user-a { background: var(--accent-a); color: #0f0f0f; }
+  .lead-badge.user-b { background: var(--accent-b); color: #0f0f0f; }
 
-  .lead-badge.user-b {
-    background: var(--accent-b);
-    color: #0f0f0f;
-  }
-
-  /* Progress bar */
+  /* Progress */
   .progress-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    height: 6px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
+    height: 4px; background: var(--surface2); border-radius: 4px;
+    overflow: hidden; margin-bottom: 1.5rem;
   }
 
   .progress-a {
-    height: 100%;
-    background: var(--accent-a);
+    height: 100%; background: var(--accent-a);
     transition: width 0.5s cubic-bezier(.4,0,.2,1);
   }
 
-  /* Input section */
+  /* Input */
   .input-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.25rem;
-    margin-bottom: 1rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.1rem 1.1rem; margin-bottom: 1rem;
   }
 
   .input-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.8rem;
+    font-family: var(--mono); font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.75rem;
   }
 
-  .input-row {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
+  .input-row { display: flex; gap: 10px; align-items: center; }
 
   .jump-input {
-    flex: 1;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 1.4rem;
-    padding: 10px 14px;
-    outline: none;
-    transition: border-color 0.15s;
-    -webkit-appearance: none;
+    flex: 1; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text); font-family: var(--mono);
+    font-size: 1.35rem; padding: 9px 13px; outline: none;
+    transition: border-color 0.15s; -webkit-appearance: none;
+    min-width: 0;
   }
 
-  .jump-input:focus { border-color: var(--text-muted); }
-  .jump-input.user-a:focus { border-color: var(--accent-a); }
-  .jump-input.user-b:focus { border-color: var(--accent-b); }
+  .jump-input:focus               { border-color: var(--text-muted); }
+  .jump-input.user-a:focus        { border-color: var(--accent-a); }
+  .jump-input.user-b:focus        { border-color: var(--accent-b); }
 
   .add-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
-    font-weight: 500;
-    white-space: nowrap;
+    padding: 9px 18px; border: none; border-radius: 10px;
+    font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.04em;
+    cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+    font-weight: 500; white-space: nowrap; flex-shrink: 0;
   }
 
-  .add-btn:active { transform: scale(0.95); opacity: 0.8; }
-
-  .add-btn.user-a { background: var(--accent-a); color: #0f0f0f; }
-  .add-btn.user-b { background: var(--accent-b); color: #0f0f0f; }
+  .add-btn:active   { transform: scale(0.94); }
+  .add-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .add-btn.user-a   { background: var(--accent-a); color: #0f0f0f; }
+  .add-btn.user-b   { background: var(--accent-b); color: #0f0f0f; }
 
   /* History */
   .history-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.25rem;
-    margin-bottom: 1rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.1rem; margin-bottom: 1rem;
   }
 
   .history-title {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.8rem;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;
   }
 
   .history-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--dim-border, #1e1e1e);
-    font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 5px 0; border-bottom: 1px solid var(--surface2); font-size: 0.85rem;
   }
 
   .history-item:last-child { border-bottom: none; }
 
-  .hist-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    margin-right: 10px;
-    flex-shrink: 0;
-  }
-
+  .hist-left    { display: flex; align-items: center; gap: 8px; }
+  .hist-dot     { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
   .hist-dot.user-a { background: var(--accent-a); }
   .hist-dot.user-b { background: var(--accent-b); }
-
-  .hist-left { display: flex; align-items: center; }
-  .hist-name { color: var(--text-muted); font-family: var(--mono); font-size: 0.75rem; }
-  .hist-count { font-family: var(--mono); font-size: 0.85rem; }
+  .hist-name    { font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted); }
+  .hist-count   { font-family: var(--mono); font-size: 0.82rem; font-weight: 500; }
   .hist-count.user-a { color: var(--accent-a); }
   .hist-count.user-b { color: var(--accent-b); }
-  .hist-time { font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim); }
+  .hist-time    { font-family: var(--mono); font-size: 0.68rem; color: #333; }
 
   .no-history {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
+    font-family: var(--mono); font-size: 0.72rem;
+    color: #333; letter-spacing: 0.05em;
   }
 
   /* Logout */
   .logout-btn {
-    width: 100%;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text-muted);
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    padding: 10px;
-    cursor: pointer;
-    transition: background 0.15s;
-    text-transform: uppercase;
+    width: 100%; background: transparent; border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text-muted); font-family: var(--mono);
+    font-size: 0.7rem; letter-spacing: 0.08em; padding: 9px;
+    cursor: pointer; text-transform: uppercase; transition: background 0.15s;
   }
 
   .logout-btn:hover { background: var(--surface); }
 
   /* Toast */
   .toast {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--text);
-    opacity: 0;
-    transition: opacity 0.2s, transform 0.2s;
-    pointer-events: none;
-    white-space: nowrap;
-    z-index: 100;
+    position: fixed; bottom: 1.5rem; left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 9px 18px;
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text);
+    opacity: 0; transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none; white-space: nowrap; z-index: 100;
   }
 
-  .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  /* Loading */
-  .loading {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-    text-align: center;
-    margin-top: 1rem;
-  }
-
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .loading span { animation: blink 1.2s ease-in-out infinite; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- ── PIN SCREEN ─────────────────────────────────────── -->
+<!-- PIN SCREEN -->
 <div id="pin-screen">
   <div class="logo-mark">🪢</div>
   <h1>Seilsprung Challenge</h1>
@@ -440,7 +276,7 @@
     <div class="pin-dot"></div>
     <div class="pin-dot"></div>
   </div>
-  <div class="numpad" id="numpad">
+  <div class="numpad">
     <button class="num-btn" onclick="pressKey('1')">1</button>
     <button class="num-btn" onclick="pressKey('2')">2</button>
     <button class="num-btn" onclick="pressKey('3')">3</button>
@@ -457,7 +293,7 @@
   <div class="pin-error" id="pin-error"></div>
 </div>
 
-<!-- ── MAIN APP ────────────────────────────────────────── -->
+<!-- MAIN APP -->
 <div id="app">
   <div class="app-header">
     <div class="month-label" id="month-label"></div>
@@ -470,10 +306,11 @@
     <div class="progress-a" id="progress-bar" style="width:50%"></div>
   </div>
 
-  <div class="input-section" id="input-section">
+  <div class="input-section">
     <div class="input-label" id="input-label"></div>
     <div class="input-row">
-      <input class="jump-input" id="jump-input" type="number" min="1" max="9999" placeholder="z.B. 50" inputmode="numeric">
+      <input class="jump-input" id="jump-input" type="number"
+             min="1" max="9999" placeholder="z.B. 50" inputmode="numeric">
       <button class="add-btn" id="add-btn" onclick="addJumps()">+ Eintragen</button>
     </div>
   </div>
@@ -489,34 +326,21 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ─────────────────────────────────────────────────────────────
-//  KONFIGURATION — HIER ANPASSEN
-// ─────────────────────────────────────────────────────────────
+// ── KONFIGURATION (wird beim Deploy automatisch befüllt) ──────
 const CONFIG = {
   users: {
-    a: {
-      name:  "Alex",        // ← Deinen Namen eintragen
-      pin:   "1234",        // ← Deinen PIN eintragen (4 Stellen)
-      color: "user-a"
-    },
-    b: {
-      name:  "Frau",        // ← Namen deiner Frau eintragen
-      pin:   "5678",        // ← PIN deiner Frau eintragen (4 Stellen)
-      color: "user-b"
-    }
+    a: { name: "__NAME_A__", pin: "__PIN_A__", color: "user-a" },
+    b: { name: "__NAME_B__", pin: "__PIN_B__", color: "user-b" }
   },
-  // GitHub-Daten für das Speichern via API
   github: {
-    owner:  "DEIN-GITHUB-USERNAME",   // ← Eintragen
-    repo:   "seilsprung-app",          // ← Repo-Name
-    token:  "",                        // ← Leer lassen! Kommt aus gh-token.js (siehe Anleitung)
-    file:   "data.json"
+    owner: "__GH_OWNER__",
+    repo:  "__GH_REPO__",
+    token: "__GH_TOKEN__",
+    file:  "data.json"
   }
 };
 
-// ─────────────────────────────────────────────────────────────
-//  STATE
-// ─────────────────────────────────────────────────────────────
+// ── STATE ─────────────────────────────────────────────────────
 let currentUser = null;
 let pinBuffer   = "";
 let appData     = null;
@@ -524,45 +348,30 @@ let appData     = null;
 const MONTHS = ["Januar","Februar","März","April","Mai","Juni",
                 "Juli","August","September","Oktober","November","Dezember"];
 
-// ─────────────────────────────────────────────────────────────
-//  PIN LOGIC
-// ─────────────────────────────────────────────────────────────
+// ── PIN ───────────────────────────────────────────────────────
 function pressKey(k) {
-  const errEl = document.getElementById("pin-error");
-  errEl.textContent = "";
-
-  if (k === "del") {
-    pinBuffer = pinBuffer.slice(0, -1);
-    renderDots(null);
-    return;
-  }
-
+  document.getElementById("pin-error").textContent = "";
+  if (k === "del") { pinBuffer = pinBuffer.slice(0,-1); renderDots(null); return; }
   if (pinBuffer.length >= 4) return;
   pinBuffer += k;
   renderDots(null);
-
-  if (pinBuffer.length === 4) {
-    setTimeout(() => checkPin(), 120);
-  }
+  if (pinBuffer.length === 4) setTimeout(checkPin, 130);
 }
 
-function renderDots(colorClass) {
-  const dots = document.querySelectorAll(".pin-dot");
-  dots.forEach((d, i) => {
-    d.classList.remove("filled", "user-a", "user-b");
+function renderDots(cls) {
+  document.querySelectorAll(".pin-dot").forEach((d,i) => {
+    d.classList.remove("filled","user-a","user-b");
     if (i < pinBuffer.length) {
       d.classList.add("filled");
-      if (colorClass) d.classList.add(colorClass);
+      if (cls) d.classList.add(cls);
     }
   });
 }
 
 function checkPin() {
-  const errEl = document.getElementById("pin-error");
   let matched = null;
-
-  for (const [key, user] of Object.entries(CONFIG.users)) {
-    if (pinBuffer === user.pin) { matched = key; break; }
+  for (const [k, u] of Object.entries(CONFIG.users)) {
+    if (pinBuffer === u.pin) { matched = k; break; }
   }
 
   if (matched) {
@@ -573,188 +382,142 @@ function checkPin() {
       document.getElementById("pin-screen").style.display = "none";
       document.getElementById("app").style.display = "block";
       loadData();
-    }, 300);
+    }, 280);
   } else {
-    // Shake effect
-    renderDots(null);
-    errEl.textContent = "Falscher PIN";
+    document.getElementById("pin-error").textContent = "Falscher PIN";
     const dots = document.getElementById("pin-dots");
-    dots.style.transition = "transform 0.05s";
-    [0,8,-8,8,-8,0].forEach((v, i) =>
-      setTimeout(() => dots.style.transform = `translateX(${v}px)`, i * 50)
+    [0,9,-9,9,-9,0].forEach((v,i) =>
+      setTimeout(() => dots.style.transform = `translateX(${v}px)`, i*50)
     );
-    setTimeout(() => dots.style.transform = "", 320);
-    pinBuffer = "";
-    renderDots(null);
+    setTimeout(() => { dots.style.transform = ""; }, 320);
+    pinBuffer = ""; renderDots(null);
   }
 }
 
-// ─────────────────────────────────────────────────────────────
-//  DATA LOADING (GitHub API)
-// ─────────────────────────────────────────────────────────────
+// ── DATEN LADEN (GitHub raw) ──────────────────────────────────
 async function loadData() {
-  renderApp({ a: 0, b: 0, month: new Date().getMonth(),
-              year: new Date().getFullYear(), history: [] });
-
+  renderApp({ a:0, b:0, month: new Date().getMonth(),
+              year: new Date().getFullYear(), history:[] });
   try {
     const url = `https://raw.githubusercontent.com/${CONFIG.github.owner}/${CONFIG.github.repo}/main/${CONFIG.github.file}?t=${Date.now()}`;
     const res = await fetch(url);
-    if (!res.ok) throw new Error("Datei nicht gefunden");
-    const data = await res.json();
-    appData = data;
+    if (!res.ok) throw new Error();
+    appData = await res.json();
 
-    // Monatsreset prüfen
+    // Monatscheck
     const now = new Date();
-    if (data.month !== now.getMonth() || data.year !== now.getFullYear()) {
-      appData = { a: 0, b: 0, month: now.getMonth(),
-                  year: now.getFullYear(), history: [] };
+    if (appData.month !== now.getMonth() || appData.year !== now.getFullYear()) {
+      appData = { a:0, b:0, month: now.getMonth(), year: now.getFullYear(), history:[] };
       await saveData();
     }
-
     renderApp(appData);
-  } catch (e) {
-    console.warn("Daten konnten nicht geladen werden:", e);
-    appData = { a: 0, b: 0, month: new Date().getMonth(),
-                year: new Date().getFullYear(), history: [] };
+  } catch {
+    appData = { a:0, b:0, month: new Date().getMonth(),
+                year: new Date().getFullYear(), history:[] };
     renderApp(appData);
-    showToast("Offline-Modus – Daten werden lokal gespeichert");
+    showToast("Verbindungsfehler – bitte Seite neu laden");
   }
 }
 
+// ── DATEN SPEICHERN (GitHub API) ─────────────────────────────
 async function saveData() {
-  if (!CONFIG.github.token && !window.GH_TOKEN) {
-    showToast("⚠ Kein GitHub Token konfiguriert");
-    return false;
-  }
-  const token = CONFIG.github.token || window.GH_TOKEN;
-
   try {
-    // SHA der aktuellen Datei holen (für Update nötig)
-    const meta = await fetch(
+    const headers = {
+      Authorization: `Bearer ${CONFIG.github.token}`,
+      Accept: "application/vnd.github+json",
+      "Content-Type": "application/json"
+    };
+    const metaRes = await fetch(
       `https://api.github.com/repos/${CONFIG.github.owner}/${CONFIG.github.repo}/contents/${CONFIG.github.file}`,
-      { headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" } }
+      { headers }
     );
-    let sha = undefined;
-    if (meta.ok) { const m = await meta.json(); sha = m.sha; }
+    let sha;
+    if (metaRes.ok) { sha = (await metaRes.json()).sha; }
 
-    // Daten hochladen
     const body = {
-      message: `update: ${CONFIG.users[currentUser].name} eingetragen`,
+      message: `update: ${CONFIG.users[currentUser].name} — ${new Date().toLocaleDateString("de-DE")}`,
       content: btoa(unescape(encodeURIComponent(JSON.stringify(appData, null, 2)))),
       ...(sha ? { sha } : {})
     };
 
     const res = await fetch(
       `https://api.github.com/repos/${CONFIG.github.owner}/${CONFIG.github.repo}/contents/${CONFIG.github.file}`,
-      { method: "PUT", headers: { Authorization: `Bearer ${token}`,
-        Accept: "application/vnd.github+json", "Content-Type": "application/json" },
-        body: JSON.stringify(body) }
+      { method:"PUT", headers, body: JSON.stringify(body) }
     );
-
     return res.ok;
-  } catch (e) {
-    console.error("Speichern fehlgeschlagen:", e);
-    return false;
-  }
+  } catch { return false; }
 }
 
-// ─────────────────────────────────────────────────────────────
-//  ADD JUMPS
-// ─────────────────────────────────────────────────────────────
+// ── SPRÜNGE EINTRAGEN ─────────────────────────────────────────
 async function addJumps() {
   const input = document.getElementById("jump-input");
   const val   = parseInt(input.value);
-
   if (!val || val < 1 || val > 9999) {
-    showToast("Bitte eine Zahl zwischen 1 und 9999 eingeben");
-    input.focus();
-    return;
+    showToast("Bitte 1–9999 eingeben"); input.focus(); return;
   }
 
   const btn = document.getElementById("add-btn");
-  btn.textContent = "Speichert…";
-  btn.disabled = true;
+  btn.textContent = "Speichert…"; btn.disabled = true;
 
   appData[currentUser] = (appData[currentUser] || 0) + val;
   appData.history = appData.history || [];
   appData.history.push({
-    user: currentUser,
-    count: val,
-    time: new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }),
-    date: new Date().toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" })
+    user: currentUser, count: val,
+    time: new Date().toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"}),
+    date: new Date().toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})
   });
-
-  // Nur letzte 20 Einträge behalten
   if (appData.history.length > 20) appData.history = appData.history.slice(-20);
 
   renderApp(appData);
   input.value = "";
 
   const ok = await saveData();
-  btn.textContent = "+ Eintragen";
-  btn.disabled = false;
-
-  if (ok) {
-    showToast(`+${val} Sprünge eingetragen!`);
-  } else {
-    showToast("Lokal gespeichert (GitHub offline)");
-  }
+  btn.textContent = "+ Eintragen"; btn.disabled = false;
+  showToast(ok ? `+${val} Sprünge gespeichert!` : "Speichern fehlgeschlagen");
 }
 
-// ─────────────────────────────────────────────────────────────
-//  RENDER
-// ─────────────────────────────────────────────────────────────
+// ── RENDER ────────────────────────────────────────────────────
 function renderApp(data) {
-  const u = CONFIG.users;
+  const u   = CONFIG.users;
   const now = new Date();
 
-  // Header
   document.getElementById("month-label").textContent =
     MONTHS[data.month ?? now.getMonth()] + " " + (data.year ?? now.getFullYear());
 
   const badge = document.getElementById("user-badge");
   badge.textContent = u[currentUser].name;
-  badge.className = "user-badge " + u[currentUser].color;
+  badge.className   = "user-badge " + u[currentUser].color;
 
-  // Score cards
-  const scoreA = data.a || 0;
-  const scoreB = data.b || 0;
-  const total  = scoreA + scoreB;
-  const leading = scoreA > scoreB ? "a" : scoreB > scoreA ? "b" : null;
+  const sA = data.a || 0, sB = data.b || 0;
+  const total   = sA + sB;
+  const leading = sA > sB ? "a" : sB > sA ? "b" : null;
 
   document.getElementById("scores-container").innerHTML = ["a","b"].map(k => {
-    const isMe      = k === currentUser;
-    const isLeading = leading === k;
-    const score     = data[k] || 0;
-    const classes   = ["score-card", isMe ? "is-me" : "", isMe ? u[k].color : "",
-                        isLeading ? `leading-${k}` : ""].filter(Boolean).join(" ");
-    return `<div class="${classes}">
-      ${isLeading ? `<div class="lead-badge ${u[k].color}">Führt</div>` : ""}
+    const isMe = k === currentUser, lding = leading === k;
+    const cls  = ["score-card", isMe?"is-me":"", isMe?u[k].color:"", lding?"leading":""].filter(Boolean).join(" ");
+    return `<div class="${cls}">
+      ${lding ? `<div class="lead-badge ${u[k].color}">Führt</div>` : ""}
       <div class="card-name">${u[k].name}</div>
-      <div class="card-score ${u[k].color}">${score}</div>
-      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted)">Sprünge</div>
+      <div class="card-score ${u[k].color}">${data[k]||0}</div>
+      <div class="card-unit">Sprünge</div>
     </div>`;
   }).join("");
 
-  // Progress bar
-  const pct = total === 0 ? 50 : Math.round(scoreA / total * 100);
+  const pct = total===0 ? 50 : Math.round(sA/total*100);
   document.getElementById("progress-bar").style.width = pct + "%";
 
-  // Input
   document.getElementById("input-label").textContent =
-    `Sprünge eintragen für ${u[currentUser].name}`;
-  const inp = document.getElementById("jump-input");
-  inp.className = "jump-input " + u[currentUser].color;
-  const btn = document.getElementById("add-btn");
-  btn.className = "add-btn " + u[currentUser].color;
+    `Sprünge eintragen — ${u[currentUser].name}`;
+  document.getElementById("jump-input").className =
+    "jump-input " + u[currentUser].color;
+  document.getElementById("add-btn").className =
+    "add-btn " + u[currentUser].color;
 
-  // History
-  const hist = (data.history || []).slice().reverse().slice(0, 6);
-  const histEl = document.getElementById("history-list");
-  if (hist.length === 0) {
-    histEl.innerHTML = '<div class="no-history">Noch keine Einträge</div>';
-  } else {
-    histEl.innerHTML = hist.map(h => `
+  const hist  = (data.history||[]).slice().reverse().slice(0,6);
+  const hEl   = document.getElementById("history-list");
+  hEl.innerHTML = hist.length === 0
+    ? '<div class="no-history">— noch keine Einträge —</div>'
+    : hist.map(h => `
       <div class="history-item">
         <div class="hist-left">
           <div class="hist-dot ${u[h.user].color}"></div>
@@ -763,30 +526,24 @@ function renderApp(data) {
         <div class="hist-count ${u[h.user].color}">+${h.count}</div>
         <div class="hist-time">${h.date} ${h.time}</div>
       </div>`).join("");
-  }
 }
 
-// ─────────────────────────────────────────────────────────────
-//  HELPERS
-// ─────────────────────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2500);
-}
-
+// ── LOGOUT / HELPERS ──────────────────────────────────────────
 function logout() {
-  currentUser = null;
-  pinBuffer   = "";
-  appData     = null;
+  currentUser = null; pinBuffer = ""; appData = null;
   sessionStorage.removeItem("seil_user");
-  document.getElementById("app").style.display   = "none";
+  document.getElementById("app").style.display       = "none";
   document.getElementById("pin-screen").style.display = "block";
   renderDots(null);
 }
 
-// Enter-Taste
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2600);
+}
+
+// Enter-Taste & Keyboard-PIN
 document.addEventListener("keydown", e => {
   if (document.getElementById("app").style.display !== "none") {
     if (e.key === "Enter") addJumps();
@@ -801,7 +558,7 @@ const saved = sessionStorage.getItem("seil_user");
 if (saved && CONFIG.users[saved]) {
   currentUser = saved;
   document.getElementById("pin-screen").style.display = "none";
-  document.getElementById("app").style.display = "block";
+  document.getElementById("app").style.display        = "block";
   loadData();
 }
 </script>
