@@ -17,22 +17,23 @@ jobs:
 
       - name: App mit Secrets bauen
         env:
-          PIN_A:   ${{ secrets.PIN_A }}
-          PIN_B:   ${{ secrets.PIN_B }}
-          NAME_A:  ${{ secrets.NAME_A }}
-          NAME_B:  ${{ secrets.NAME_B }}
+          PIN_A:    ${{ secrets.PIN_A }}
+          PIN_B:    ${{ secrets.PIN_B }}
+          NAME_A:   ${{ secrets.NAME_A }}
+          NAME_B:   ${{ secrets.NAME_B }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_OWNER: ${{ github.repository_owner }}
           GH_REPO:  ${{ github.event.repository.name }}
         run: |
-          # Platzhalter in index.html mit echten Werten ersetzen
-          sed -i "s|__PIN_A__|${PIN_A}|g"     index.html
-          sed -i "s|__PIN_B__|${PIN_B}|g"     index.html
-          sed -i "s|__NAME_A__|${NAME_A}|g"   index.html
-          sed -i "s|__NAME_B__|${NAME_B}|g"   index.html
+          sed -i "s|__PIN_A__|${PIN_A}|g"       index.html
+          sed -i "s|__PIN_B__|${PIN_B}|g"       index.html
+          sed -i "s|__NAME_A__|${NAME_A}|g"     index.html
+          sed -i "s|__NAME_B__|${NAME_B}|g"     index.html
           sed -i "s|__GH_TOKEN__|${GH_TOKEN}|g" index.html
           sed -i "s|__GH_OWNER__|${GH_OWNER}|g" index.html
           sed -i "s|__GH_REPO__|${GH_REPO}|g"   index.html
+          # data.json entfernen damit sie NICHT auf gh-pages landet
+          rm -f data.json
 
       - name: Auf gh-pages Branch deployen
         uses: peaceiris/actions-gh-pages@v4
