@@ -1,0 +1,44 @@
+name: Deploy App
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: App mit Secrets bauen
+        env:
+          PIN_A:   ${{ secrets.PIN_A }}
+          PIN_B:   ${{ secrets.PIN_B }}
+          NAME_A:  ${{ secrets.NAME_A }}
+          NAME_B:  ${{ secrets.NAME_B }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_OWNER: ${{ github.repository_owner }}
+          GH_REPO:  ${{ github.event.repository.name }}
+        run: |
+          # Platzhalter in index.html mit echten Werten ersetzen
+          sed -i "s|__PIN_A__|${PIN_A}|g"     index.html
+          sed -i "s|__PIN_B__|${PIN_B}|g"     index.html
+          sed -i "s|__NAME_A__|${NAME_A}|g"   index.html
+          sed -i "s|__NAME_B__|${NAME_B}|g"   index.html
+          sed -i "s|__GH_TOKEN__|${GH_TOKEN}|g" index.html
+          sed -i "s|__GH_OWNER__|${GH_OWNER}|g" index.html
+          sed -i "s|__GH_REPO__|${GH_REPO}|g"   index.html
+
+      - name: Auf gh-pages Branch deployen
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          exclude_assets: '.github,.gitignore,README.md'
+          force_orphan: true
