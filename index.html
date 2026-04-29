@@ -625,10 +625,18 @@ async function saveData(commitMsg) {
       { method:"PUT", headers, body: JSON.stringify(body) }
     );
     if (res.ok) { setSyncState("ok"); return true; }
-    throw new Error("API " + res.status);
+    const errBody = await res.json().catch(()=>({}));
+    const errMsg = errBody.message || "unbekannt";
+    throw new Error(`HTTP ${res.status}: ${errMsg}`);
   } catch(e) {
-    console.error("Speichern fehlgeschlagen:", e);
+    console.error("Speichern fehlgeschlagen:", e.message);
     setSyncState("error");
+    // Fehlermeldung mit HTTP-Status anzeigen
+    const msg = e.message || "";
+    if (msg.includes("401")) return "auth";
+    if (msg.includes("403")) return "forbidden";
+    if (msg.includes("404")) return "notfound";
+    if (msg.includes("422")) return "conflict";
     return false;
   }
 }
@@ -656,7 +664,17 @@ async function addJumps() {
   renderAll(); input.value = "";
   const ok = await saveData();
   btn.textContent = "+ Eintragen"; btn.disabled = false;
-  showToast(ok ? `✓ +${val} Sprünge gespeichert!` : "Speichern fehlgeschlagen – bitte erneut versuchen", ok ? "success" : "error");
+  if (ok === true) {
+    showToast(`✓ +${val} Sprünge gespeichert!`, "success");
+  } else if (ok === "auth" || ok === "forbidden") {
+    showToast("Fehler: GitHub Token ungültig oder abgelaufen", "error");
+  } else if (ok === "notfound") {
+    showToast("Fehler: data Branch oder data.json nicht gefunden", "error");
+  } else if (ok === "conflict") {
+    showToast("Konflikt – Seite neu laden und erneut versuchen", "error");
+  } else {
+    showToast("Speichern fehlgeschlagen – Details in Browser-Konsole", "error");
+  }
 }
 
 // ── EINTRAG BEARBEITEN ────────────────────────────────────────
