@@ -31,7 +31,6 @@ jobs:
           sed -i "s|__NAME_B__|${NAME_B}|g"   index.html
           sed -i "s|__GH_OWNER__|${GH_OWNER}|g" index.html
           sed -i "s|__GH_REPO__|${GH_REPO}|g"   index.html
-          # Token in zwei Hälften einsetzen damit GitHub ihn nicht maskiert
           HALF1="${GH_TOKEN:0:20}"
           HALF2="${GH_TOKEN:20}"
           sed -i "s|__GH_TOKEN_1__|${HALF1}|g" index.html
