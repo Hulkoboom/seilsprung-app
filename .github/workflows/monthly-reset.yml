@@ -20,9 +20,13 @@ jobs:
       - name: data.json archivieren und zurücksetzen
         run: |
           PREV_MONTH=$(( $(date +%-m) - 2 ))
-          if [ $PREV_MONTH -lt 0 ]; then PREV_MONTH=11; fi
           PREV_YEAR=$(date +%Y)
-          if [ $(date +%-m) -eq 1 ]; then PREV_YEAR=$(( $(date +%Y) - 1 )); fi
+          if [ $(date +%-m) -eq 1 ]; then
+            PREV_MONTH=11
+            PREV_YEAR=$(( $(date +%Y) - 1 ))
+          elif [ $PREV_MONTH -lt 0 ]; then
+            PREV_MONTH=11
+          fi
           CURR_MONTH=$(( $(date +%-m) - 1 ))
           CURR_YEAR=$(date +%Y)
 
