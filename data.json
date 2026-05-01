@@ -1,9 +1,17 @@
 {
-  "a": 0,
+  "a": 463,
   "b": 0,
   "month": 4,
   "year": 2026,
-  "history": [],
+  "history": [
+    {
+      "id": 1777619666879,
+      "user": "a",
+      "count": 463,
+      "time": "09:14",
+      "date": "01.05."
+    }
+  ],
   "archive": [
     {
       "month": 3,
